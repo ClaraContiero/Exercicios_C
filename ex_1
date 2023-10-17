@@ -1,0 +1,73 @@
+/*Elabore um programa que leia um numero inteiro e construa os seguintes procedimentos:
+• int soma_digit(int a) – este procedimento irá somar os dígitos desse número inteiro
+• void Maior_Digit(int N, int *M) – este procedimento irá determinar o maior dígito desse número inteiro
+• Os resultados deverão ser impressos no programa principal; */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+    /*CHAMADA DE FUNÇÕES*/
+
+    int somarDigitos(int n);
+    int maiorDigito(int n, int *Maior);
+
+
+    /*MAIN*/
+
+    int main() {
+    setlocale(LC_ALL, "portuguese");
+
+    int num, somaDig, maiorDig;
+
+    printf("Digite um número.\n");
+    scanf("%i", &num);
+
+    somaDig = somarDigitos(num);
+    maiorDigito(num, &maiorDig); //aqui estou pegando o endereço de maiorDig
+
+
+    printf("\nSoma: %i\n", somaDig);
+    printf("Maior: %i", maiorDig);
+
+
+    return 0;
+   }
+
+
+   //FUNÇÕES
+
+    int somarDigitos(int n)
+    {
+        int somaDig = 0;
+
+        //somando os digitos
+        while (n > 0) {
+        somaDig = somaDig + (n%10);
+        n = n/10;
+    }
+        return somaDig;
+
+   }
+
+
+   int maiorDigito(int n, int *M)
+   {
+   	int digito;
+
+	(*M)= -1; //esse ponteiro aponta pro conteúdo de maiorDig, lá em cima, é como se ele dissesse que o maiorDig vale -1
+
+	while(n > 0)
+	{
+		digito = n%10;
+
+		if(digito > (*M))
+		{
+			(*M) = digito;
+		}
+
+		n = n/10;
+	}
+
+	return *M; //retorna o novo conteúdo de maiorDig
+   }
