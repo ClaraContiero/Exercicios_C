@@ -1,0 +1,83 @@
+/*Elabore um programa que leia três números reais e imprima o maior e o menor número lido. O programa deverá ser constituído de duas funções:
+• Uma função para ler os números reais
+• Uma função para determinar quem é o maior. Esta função terá como parâmetro os 3 valores a serem analisados
+e retornará para o principal quem é o maior
+• O resultado será impresso no programa principal...*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+    /*CHAMADA DE FUNÇÕES*/
+
+    float lerNum();
+    float maiorNum(float x, float y, float z, float *M);
+
+
+
+    /*MAIN*/
+
+    int main() {
+    setlocale(LC_ALL, "portuguese");
+
+    float a, b, c, maiorN, menorN;
+
+    a = lerNum();
+    b = lerNum();
+    c = lerNum();
+
+    maiorNum(a, b, c, &maiorN); //estou pegando as 3 var e o endereço de maiorN para alterar seu valor na função lá embaixo;
+
+    printf("\nMaior num: %.1f\nMenor num: %.1f", maiorN, menorN);
+    printf("\nA = %.1f\nB = %.1f\nC = %.1f", a, b, c);
+
+
+    return 0;
+   }
+
+
+   //FUNÇÕES
+
+
+    float lerNum()
+    {
+    	float n;
+
+    	printf("Digite um número: \n");
+    	scanf("%f", &n);
+
+    }
+
+
+    float maiorNum(float a, float b, float c, float *Maior)
+    {
+    	(*Maior) = a; //como o primeiro numero que digito é o a, ele é o maior
+
+    	if(b > *Maior) //se b for maior que a
+	{
+		if(b > c) //testo se é maior que c também 
+		{
+			*Maior = b; //então b é o maior
+		}
+		else
+		{
+			*Maior = c; //caso contrário, se b é maior que a, mas é menor que c, então c é o maior
+		}
+	}
+	else
+	{
+		if(b > c) //agora, se b não for maior que a, testa pra ver se é maior que c
+		{
+		*Maior = b; //se sim, b vai ser o maior
+		}
+		else
+		{
+			*Maior = c; //senão, c é o maior
+		}
+	}
+
+
+   return *Maior; //aqui retorno o ponteiro 
+
+
+    }
